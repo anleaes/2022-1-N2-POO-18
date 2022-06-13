@@ -1,0 +1,81 @@
+@startuml Prontuário 
+
+title Prontuario
+
+class Cadastro_paciente{
+    - nome:String
+    - idade: Int 
+    - cpf: String
+    - endereco: String
+    - telefone: Int
+    - num_cadastro: Int
+    + construtor(nome, idade, cpf, endereco, telefone, num_cadastro)
+}
+
+class Hospital{
+    - nome_hospital: String
+    - endereco_hospital: String
+    - ala_hospitalar: String
+    - sala: Int
+    + construtor(nome_hospital, endereco_hospital, ala_hospitalar, sala)
+}
+
+class Plano_saude{
+    - nome_plano: String
+    - tipo_plano: String
+    - cobertura: String
+    - num_cadastro: Int
+    + construtor(nome_plano, tipo_plano, cobertura, num_cadastro)
+}
+
+class Equipe_medica{
+    - nome_medico: String
+    - crm_medico: Int
+    - especializacao_medico: String
+    - nome_enfermeiras: String
+    + construtor(nome_medico, crm_medico, especializacao_medico, nome_enfermeiras)
+}
+
+class Consulta{
+    - temperatura: Int 
+    - pressao: Float 
+    - remedios_tomados: String
+    - alergias: String
+    - exame_fisico: String
+    - diagnostico: String
+    + construtor(temperatura, pressao, remedios_tomados, alergias, exame_fisico, diagnostico)
+}
+
+class Exame{
+    - tipo_exame: String
+    - data_exame: String
+    - local_exame: String
+    - restricoes_exame: String 
+    + construtor(tipo, data_exame, local_exame, restricoes_exame)
+}
+
+class Prontuario{ 
+    - data: String
+    - id_prontuario: Int
+    + construtor(data, id_prontuario)
+}
+
+class Tratamento{
+    - duracao: String
+    - remedios: String
+    - qtd_remedio_dia: Int
+    - restricoes: String 
+    + construtor(duracao, remedios, qtd_remedio_dia, restricoes)
+}
+ Prontuario --|> Cadastro_paciente   
+ Prontuario --|> Equipe_medica 
+ Prontuario --|> Hospital 
+ Prontuario --|> Tratamento 
+ Tratamento --|> Consulta
+ Consulta --|> Equipe_medica 
+ Exame --> Consulta 
+ Exame <-- Tratamento 
+ Exame --|> Equipe_medica
+ Hospital *-- Equipe_medica
+ Plano_saude --* Cadastro_paciente
+@enduml
